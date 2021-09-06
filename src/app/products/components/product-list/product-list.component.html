@@ -1,0 +1,5 @@
+<h2>Product List</h2>
+<app-product
+ *ngFor='let product of products.getProducts(); trackBy: trackById'
+ [product]="product"
+ ></app-product>
