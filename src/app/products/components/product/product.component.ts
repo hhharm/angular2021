@@ -9,7 +9,7 @@ import { ProductModel } from '../../models/product.model';
 export class ProductComponent {
   @Input() product!: ProductModel;
 
-  onAddToCart() {
+  onAddToCart(): void {
     console.log("Item has been added!");
   }
 }
