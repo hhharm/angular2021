@@ -24,19 +24,19 @@ export class CartListComponent implements OnInit {
   }
 
   decrease(item: CartItemModel): void {
-    this.cartService.decreaseItemCount(item);
+    this.cartService.decreaseQuantity(item);
   }
 
   increase(item: CartItemModel): void {
-    this.cartService.increaseItemCount(item);
+    this.cartService.increaseQuantity(item);
   }
 
   remove(item: CartItemModel): void {
-    this.cartService.removeItem(item);
+    this.cartService.removeProduct(item);
   }
 
   refresh(): void {
-    this.items = [...this.cartService.getCartItems()];
+    this.items = [...this.cartService.getProducts()];
     this.cdr.markForCheck();
   }
 }

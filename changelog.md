@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.3] - 2021-09-25
+### Added 
+- Added Core module
+- Added ConfigOptionsService
+- Added ConstantsService (Token)
+- Added generator service and factory for random alfanum string of length n and generator of numbers
+- Added localStorage service
+- Added focus directive to set backgroundColor to input color on element click
+
+### Changed
+- Changed cart service: renamed methods, added totalSum and totalQuantity fields, added isEmptyCart and updateCartData methods
+
+
 ## [0.0.2] - 2021-09-25
 ### Added
 - Added 'cart item' component

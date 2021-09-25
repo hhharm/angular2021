@@ -17,6 +17,6 @@ export class ProductListComponent {
   }
 
   addToCart(item: ProductModel): void {
-    this.cart.addItemToCart(item);
+    this.cart.addProduct(item);
   }
 }

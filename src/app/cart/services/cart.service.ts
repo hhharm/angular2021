@@ -11,35 +11,67 @@ const defaultCartItems: Map<string, CartItemModel> = new Map([[
   providedIn: 'root'
 })
 export class CartService {
-  private items = defaultCartItems;
+  private cartProducts = defaultCartItems;
+  private totalQuantity: number = this.getTotalQuantity();
+  private totalSum: number = this.getTotalSum();
   
-  getCartItems(): CartItemModel[] {
-    return [...this.items.values()];
+  getProducts(): CartItemModel[] {
+    return [...this.cartProducts.values()];
   }
 
-  addItemToCart(item: ProductModel): void {
-    const cartItem = this.items.has(item.id) ? this.items.get(item.id) : null;
+  addProduct(item: ProductModel): void {
+    const cartItem = this.cartProducts.has(item.id) ? this.cartProducts.get(item.id) : null;
     const count = (cartItem?.count ?? 0) + 1;
-    this.items.set(item.id, {
+    this.cartProducts.set(item.id, {
       ...item,
       count,
       sum: count * item.price
     });
+    this.updateCartData();
   }
 
-  increaseItemCount(item: CartItemModel): void {
-    this.items.set(item.id, { ...item, count: item.count + 1 });
+  increaseQuantity(item: CartItemModel): void {
+    this.changeQuantity(item, 1);
+    this.updateCartData();
   }
 
-  decreaseItemCount(item: CartItemModel): void {
+  decreaseQuantity(item: CartItemModel): void {
     if (item.count > 1) {
-      this.items.set(item.id, { ...item, count: item.count - 1 });
+      this.changeQuantity(item, -1);
     } else {
-      this.removeItem(item);
-    }    
+      this.removeProduct(item);
+    }
+    this.updateCartData();
   }
 
-  removeItem(item: CartItemModel): void {
-    this.items.delete(item.id);
+  removeProduct(item: CartItemModel): void {
+    this.cartProducts.delete(item.id);
+    this.updateCartData();
+  }
+
+  removeAllProducts(): void {
+    this.cartProducts = new Map();
+    this.updateCartData();
+  }
+
+  private changeQuantity(item: CartItemModel, change: number): void {
+    this.cartProducts.set(item.id, { ...item, count: item.count + change });
+  }
+
+  private updateCartData(): void {
+    this.totalQuantity = this.getTotalQuantity();
+    this.totalSum = this.getTotalSum();
+  }
+
+  public isEmptyCart(): boolean {
+    return this.cartProducts.size === 0;
+  }
+
+  private getTotalQuantity(): number {
+    return Array.from(this.cartProducts.values()).reduce((acc, item) => acc + item.count, 0);
+  }
+
+  private getTotalSum(): number {
+    return Array.from(this.cartProducts.values()).reduce((acc, item) => acc + item.count * item.price, 0);
   }
 }

@@ -3,7 +3,7 @@
 <p class="price">{{item.price}}₽</p>
 <p class="amount">Amount: {{item.count}}</p>
 <div class="button-container">
-    <button class="button__plus" (click)="onPlus()">＋</button>
-    <button class="button__minus" (click)="onMinus()">-</button>
-    <button class="button__remove" (click)="onRemove()">🗑</button>
+    <button class="button__plus" appFocus (click)="onPlus()">＋</button>
+    <button class="button__minus" appFocus (click)="onMinus()">-</button>
+    <button class="button__remove" appFocus (click)="onRemove()">🗑</button>
 </div>

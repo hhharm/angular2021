@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
-import { HighlightDirective } from './highlight.directive';
+import { FocusDirective } from './directives/focus.directive';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
-    HighlightDirective
+    HighlightDirective,
+    FocusDirective
   ],
   imports: [],
-  exports: [HighlightDirective],
+  exports: [
+    HighlightDirective,
+    FocusDirective
+  ],
   providers: [],
 })
 export class SharedModule { }
