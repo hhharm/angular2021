@@ -2,4 +2,5 @@
 <app-product
  *ngFor='let product of products.getProducts(); trackBy: trackById'
  [product]="product"
+ (add)="addToCart($event)"
  ></app-product>

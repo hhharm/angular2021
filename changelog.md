@@ -6,6 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2021-09-25
+### Added
+- Added 'cart item' component
+- Added highlight directive
+- Added shared, products, orders, cart modules
+
+### Changed
+- Modified style of components
+- Changed app component title: now it's set with using ViewChild
+- Using hostBinding and HostListener in highlight directive
+- cart and product services are used to get and change products and cart values
+- implement increase item count, decrease item count, remove item from cart
+
+
 ## [0.0.1] - 2021-09-06
 ### Added
 - Added 'first component'

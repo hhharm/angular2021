@@ -1,0 +1,41 @@
+:host {
+    display: flex;
+    background-color: #B1D4E0;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 0 5px;
+    justify-content: space-between;
+    max-width: 500px;
+    
+    & .title {
+        color: #0C2D48;
+        padding: 0 10px;
+        font-weight: bold;
+    }
+
+    & .category {
+        color: #0C2D48;
+        padding: 0 10px;
+        font-style: italic;
+    }
+    
+    & .price {
+        color: #0C2D48;
+        padding: 0 10px;
+    }
+
+    & .button {
+        $size: 40px;
+        &__minus, &__plus, &__remove {
+            width: $size;
+            border-radius: 10px;
+            height: $size;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        &-container {
+            align-self: flex-end;
+        }
+    }
+}

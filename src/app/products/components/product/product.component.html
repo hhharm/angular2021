@@ -1,4 +1,8 @@
 <div class="product">
-    <span class="product__description">Product: {{product | json}}</span>
-    <button (click)="onAddToCart()">Buy</button>
+    <div>
+        <h2 class="title">{{product.name}}</h2>
+        <p class="category">{{product.category}}</p>
+        <p class="price">{{product.price}}₽</p>
+    </div>
+    <button class="button" (click)="onAddToCart()" [disabled]="!product.isAvailable">Buy</button>
 </div>

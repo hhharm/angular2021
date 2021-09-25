@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from 'src/app/cart/services/cart.service';
 import { ProductModel, ProductId } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 
@@ -9,9 +10,13 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductListComponent {
 
-  constructor(public products: ProductsService) { }
+  constructor(public products: ProductsService, public cart: CartService) { }
 
   trackById(_index: number, obj: ProductModel): ProductId {
     return obj.id;
+  }
+
+  addToCart(item: ProductModel): void {
+    this.cart.addItemToCart(item);
   }
 }

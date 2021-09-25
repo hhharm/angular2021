@@ -1,13 +1,30 @@
 .product {
     display: inline-block;
-    max-width: 300px;
-    border: 1px solid goldenrod;
+    max-width: 500px;
+    border: 1px solid #75E6DA;
     border-radius: 10px;
-    background-color: wheat;
+        background-color: #189AB4;
+        color: white;
     margin: 10px;
     padding: 10px;
 
-    &__description {
-        margin-right: 8px;
+    & .category {
+        font-size: smaller;
+        font-style: italic;
+        color: #D4F1F4;
+        margin: 0;
+    }
+    & .price {
+        color: #75E6DA;
+    }
+    & .title {
+        margin: 0;
+        color: #75E6DA;
+    }
+
+    & .button {
+        border-radius: 10px;
+        width: 100%;
+        padding: 10px;
     }
 }

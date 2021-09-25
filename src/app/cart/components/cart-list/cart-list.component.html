@@ -1,8 +1,12 @@
 <h2>Cart</h2>
-<ng-container *ngIf="cartService.getCartItems().length > 0; else emptyCart">
-    <p *ngFor="let cartItem of cartService.getCartItems(); trackBy: trackById">
-        {{cartItem | json}}
-    </p>
+<ng-container *ngIf="items.length > 0; else emptyCart">
+    <app-cart-item *ngFor="let cartItem of items; trackBy: trackById" appHighlight [item]="cartItem"
+        (decrease)="decrease(cartItem)" (increase)="increase(cartItem)" (remove)="remove(cartItem)">
+    </app-cart-item>
 </ng-container>
 
-<ng-template #emptyCart><p>Your cart is empty!</p></ng-template>
+<ng-template #emptyCart>
+    <p>Your cart is empty!</p>
+</ng-template>
+
+<button (click)="refresh()">Refresh</button>
