@@ -1,6 +1,6 @@
 <p class="title">{{item.name}}</p>
 <p class="category">{{item.category}}</p>
-<p class="price">{{item.price}}₽</p>
+<p class="price">{{item.price| currency:"£"}}</p>
 <p class="amount">Amount: {{item.count}}</p>
 <div class="button-container">
     <button class="button__plus" appFocus (click)="onPlus()">＋</button>

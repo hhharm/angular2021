@@ -1,23 +1,25 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ProductId } from 'src/app/products/models/product.model';
 import { CartItemModel } from '../../models/cart-item.model';
 import { CartService } from '../../services/cart.service';
+
+interface SortOptions {
+  key: "name" | "price" | "count";
+  isAsc: boolean;
+}
 
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.scss']
 })
-export class CartListComponent implements OnInit {
+export class CartListComponent {
 
   items: CartItemModel[] = [];
 
   constructor(public cartService: CartService,
-  private cdr: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef) {
   }
-  ngOnInit(): void {
-    this.refresh();
-}
 
   trackById(_index: number, obj: CartItemModel): ProductId {
     return obj.id;
@@ -36,7 +38,11 @@ export class CartListComponent implements OnInit {
   }
 
   refresh(): void {
-    this.items = [...this.cartService.getProducts()];
+    // this.items = [...this.cartService.getProducts()];
+    this.cdr.markForCheck();
+  }
+
+  onCheckboxChange(): void {
     this.cdr.markForCheck();
   }
 }

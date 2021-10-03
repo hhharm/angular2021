@@ -2,7 +2,8 @@
     <div>
         <h2 class="title">{{product.name}}</h2>
         <p class="category">{{product.category}}</p>
-        <p class="price">{{product.price}}₽</p>
+        <p class="price">{{product.price | currency:"£"}}</p>
     </div>
-    <button class="button" (click)="onAddToCart()" appFocus [disabled]="!product.isAvailable">Buy</button>
+    <button class="button" (click)="onAddToCart()" appFocus [disabled]="!product.isAvailable">{{'Buy'|
+        uppercase}}</button>
 </div>

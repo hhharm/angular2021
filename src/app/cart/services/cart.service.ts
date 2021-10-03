@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ProductCategories, ProductModel } from 'src/app/products/models/product.model';
 import { CartItemModel } from '../models/cart-item.model';
 
@@ -12,11 +14,12 @@ const defaultCartItems: Map<string, CartItemModel> = new Map([[
 })
 export class CartService {
   private cartProducts = defaultCartItems;
+  private cartProducts$ = new BehaviorSubject<CartItemModel[]>([...this.cartProducts.values()]);
   private totalQuantity: number = this.getTotalQuantity();
   private totalSum: number = this.getTotalSum();
   
-  getProducts(): CartItemModel[] {
-    return [...this.cartProducts.values()];
+  getProducts(): Observable<CartItemModel[]> {
+    return this.cartProducts$.asObservable();
   }
 
   addProduct(item: ProductModel): void {
@@ -59,12 +62,13 @@ export class CartService {
   }
 
   private updateCartData(): void {
+    this.cartProducts$.next([...this.cartProducts.values()]);
     this.totalQuantity = this.getTotalQuantity();
     this.totalSum = this.getTotalSum();
   }
 
-  public isEmptyCart(): boolean {
-    return this.cartProducts.size === 0;
+  public isEmptyCart(): Observable<boolean> {
+    return this.cartProducts$.pipe(map(cart => cart.length === 0));
   }
 
   private getTotalQuantity(): number {

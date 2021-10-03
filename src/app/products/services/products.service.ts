@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CartService } from 'src/app/cart/services/cart.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductCategories, ProductModel } from '../models/product.model';
 
 const defaultValue = [
@@ -13,9 +13,9 @@ const defaultValue = [
 })
 export class ProductsService {
 
-  private productList = defaultValue;
+  private productList$ = new BehaviorSubject<ProductModel[]>(defaultValue);
   
-  getProducts(): ProductModel[] {
-    return this.productList;
+  getProducts(): Observable<ProductModel[]> {
+    return this.productList$.asObservable();
   }
 }
