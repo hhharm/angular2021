@@ -1,4 +1,16 @@
-<h1 #appTitle></h1>
-<app-product-list></app-product-list>
-
-<app-cart-list></app-cart-list>
+<header class="app-header">
+  <div class="app-content">
+    <h1 #appTitle class="app-title"></h1>
+    <nav class="app-nav">
+      <a routerLink="/products-list">Products</a>
+      <a routerLink="/cart">Cart</a>
+      <a routerLink="/admin">Administration</a>
+    </nav>
+  </div>
+  <button (click)="userInfo.toggleIsAdmin()" class="toggle-admin">
+    {{ (userInfo.getIsAdmin() | async) ? "Admin" : "User" }}
+  </button>
+</header>
+<main class="main">
+  <router-outlet></router-outlet>
+</main>

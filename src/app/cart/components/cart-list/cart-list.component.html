@@ -1,24 +1,45 @@
 <h2>Cart</h2>
 <div>
-    <label for="orderBy" class="label">Order by </label>
-    <select id="orderBy" #orderBy>
-        <option value="count">Amount</option>
-        <option value="price">Price</option>
-        <option value="name">Name</option>
-    </select>
-    <label for="direction" class="label">Is acsending? </label>
-    <input type="checkbox" id="direction" checked #isAsc (change)="onCheckboxChange()">
+  <label for="orderBy" class="label">Order by </label>
+  <select id="orderBy" #orderBy>
+    <option value="count">Amount</option>
+    <option value="price">Price</option>
+    <option value="name">Name</option>
+  </select>
+  <label for="direction" class="label">Is acsending? </label>
+  <input
+    type="checkbox"
+    id="direction"
+    checked
+    #isAsc
+    (change)="onCheckboxChange()"
+  />
 </div>
-<ng-container *ngIf="(this.cartService.isEmptyCart() | async) === false; else emptyCart">
-    <app-cart-item
-        *ngFor="let cartItem of (this.cartService.getProducts() | async | orderBy: orderBy.value : isAsc.checked); trackBy: trackById"
-        appHighlight [item]="cartItem" (decrease)="decrease(cartItem)" (increase)="increase(cartItem)"
-        (remove)="remove(cartItem)">
-    </app-cart-item>
+<ng-container
+  *ngIf="(this.cartService.isEmptyCart() | async) === false; else emptyCart"
+>
+  <app-cart-item
+    *ngFor="
+      let cartItem of cartService.getProducts()
+        | async
+        | orderBy: orderBy.value:isAsc.checked;
+      trackBy: trackById
+    "
+    appHighlight
+    [item]="cartItem"
+    (decrease)="decrease(cartItem)"
+    (increase)="increase(cartItem)"
+    (remove)="remove(cartItem)"
+  >
+  </app-cart-item>
 </ng-container>
 
 <ng-template #emptyCart>
-    <p>Your cart is empty!</p>
+  <p>Your cart is empty!</p>
 </ng-template>
 
-<button (click)="refresh()">Refresh</button>
+<!-- <button (click)="refresh()">Refresh</button> -->
+
+<button [disabled]="cartService.isEmptyCart() | async">
+  <a routerLink="/order">Order</a>
+</button>

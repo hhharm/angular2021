@@ -1,9 +1,18 @@
-<div class="product">
-    <div>
-        <h2 class="title">{{product.name}}</h2>
-        <p class="category">{{product.category}}</p>
-        <p class="price">{{product.price | currency:"£"}}</p>
-    </div>
-    <button class="button" (click)="onAddToCart()" appFocus [disabled]="!product.isAvailable">{{'Buy'|
-        uppercase}}</button>
+<div #imageDiv></div>
+<div class="product" *ngIf="product !== undefined">
+  <div>
+    <h2 class="title">{{ product.name }}</h2>
+    <p class="category">{{ product.category }}</p>
+    <p class="price">{{ product.price | currency: "£" }}</p>
+  </div>
+  <button
+    class="button"
+    (click)="onAddToCart()"
+    appFocus
+    [disabled]="!product.isAvailable"
+  >
+    {{ "Buy" | uppercase }}
+  </button>
 </div>
+<br />
+<a routerLink="/products-list">Back</a>

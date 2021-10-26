@@ -6,11 +6,13 @@ import { CartModule } from './cart/cart.module';
 import { CoreModule } from './core/core.module';
 import { FirstComponent } from './first/first.component';
 import { ProductsModule } from './products/products.module';
+import { ForbiddenComponent } from './error/forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule,

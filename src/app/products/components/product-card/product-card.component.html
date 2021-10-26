@@ -1,0 +1,14 @@
+<div class="product">
+  <h2 class="title">
+    <a [routerLink]="'/product/' + product.id">{{ product.name }}</a>
+  </h2>
+  <p class="price">{{ product.price | currency: "£" }}</p>
+  <button
+    class="button"
+    (click)="onAddToCart()"
+    appFocus
+    [disabled]="!product.isAvailable"
+  >
+    {{ "Buy" | uppercase }}
+  </button>
+</div>

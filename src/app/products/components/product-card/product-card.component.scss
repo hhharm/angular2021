@@ -1,0 +1,14 @@
+.product {
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:disabled:hover {
+  cursor: default;
+}
